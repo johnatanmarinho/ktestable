@@ -21,7 +21,12 @@ public class Transitions {
 	}
 	
 	public String read(String source, Character c){
-		return transition.get(source).get(c);
+		if(transition.containsKey(source)){
+			if(transition.get(source).containsKey(c)){
+				return transition.get(source).get(c);				
+			}			
+		}		
+		return Transitions.ERROR;
 	}
 	public void setTransition(String source, Character c, String destination ){
 		if(transition.containsKey(source)){

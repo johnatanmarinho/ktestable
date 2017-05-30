@@ -41,8 +41,7 @@ public class Automato {
 	public boolean recognize(String string) {
 		String state = this.initialState;
 		for(Character c : string.toCharArray()){
-			String read = getTransition(state).read(c);
-			System.out.println(state);
+			String read = transitions.read(state, c);			
 			if(read == Transitions.ERROR 
 					&& !sufix.contains(read)){
 				return false; 
@@ -50,12 +49,7 @@ public class Automato {
 			state = read;
 		}
 		return true;
-	}
-	
-	private Transition getTransition(String state){
-		
-		return new Transition("ERROR");
-	}
+	}	
 	
 
 }

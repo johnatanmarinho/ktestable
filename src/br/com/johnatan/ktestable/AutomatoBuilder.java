@@ -36,10 +36,11 @@ public class AutomatoBuilder {
 			for (int i = 0; i < str.length() ; i++) {
 				Character c = str.charAt(i);
 				String source = ">"; 
-				if(i != 0){
+				if(i >= 0){
 					source = str.substring(0 , i);
 				}
 				String destination = str.substring(0, i+1);
+				System.out.println("asdf   >" + destination);
 				transitions.setTransition(source, c, destination);
 			}	
 		}

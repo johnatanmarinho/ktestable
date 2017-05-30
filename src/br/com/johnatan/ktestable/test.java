@@ -14,15 +14,12 @@ public class test {
 				"o seu k testable é - melhor que o meu");
 				
 		KTMachine machine = KTMachineBuilder.buildKTMachine(k, sentences);
-		
 		Automato dfa = AutomatoBuilder.automatoBuilder(machine);
 
-		//writeTransition(dfa.getTransitions(), machine);
-		if(dfa.recognize("testando meu k testable")){
-			System.out.println("SUCESS!!!");
-		}else {
-			System.out.println("=(");
-		}
+		System.out.println(
+				 dfa.recognize("testando meu k testable") 	
+			 		? "sucess" 
+			 		: "fail");	
 		
 	}
 }
