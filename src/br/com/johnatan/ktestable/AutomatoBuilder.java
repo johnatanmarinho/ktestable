@@ -32,7 +32,7 @@ public class AutomatoBuilder {
 				if(i != 0){
 					source = str.substring(0, i);
 				}
-				String destination = str;
+				String destination = str.substring(0, i+1);
 				getTransition(transitions, source).put(c, destination);
 			}	
 		}
