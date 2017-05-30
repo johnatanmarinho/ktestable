@@ -3,6 +3,7 @@ package br.com.johnatan.ktestable;
 import java.util.HashMap;
 import java.util.Map;
 
+@Deprecated
 public class Transition {
 	private String source;
 	private Map<Character, String> transition;
