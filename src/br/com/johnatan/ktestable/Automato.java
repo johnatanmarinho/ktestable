@@ -6,9 +6,9 @@ public class Automato {
 
 	private String initialState;
 	private List<String> sufix;
-	private List<Transition> transitions;
+	private Transitions transitions;
 
-	public Automato(String string, List<String> sufix, List<Transition> transitions) {
+	public Automato(String string, List<String> sufix, Transitions transitions) {
 		this.initialState = string;
 		this.sufix = sufix;
 		this.transitions = transitions;
@@ -30,11 +30,11 @@ public class Automato {
 		this.sufix = sufix;
 	}
 
-	public List<Transition> getTransitions() {
+	public Transitions getTransitions() {
 		return transitions;
 	}
 
-	public void setTransitions(List<Transition> transitions) {
+	public void setTransitions(Transitions transitions) {
 		this.transitions = transitions;
 	}
 
@@ -43,7 +43,7 @@ public class Automato {
 		for(Character c : string.toCharArray()){
 			String read = getTransition(state).read(c);
 			System.out.println(state);
-			if(read == "ERROR" 
+			if(read == Transitions.ERROR 
 					&& !sufix.contains(read)){
 				return false; 
 			}
@@ -53,11 +53,7 @@ public class Automato {
 	}
 	
 	private Transition getTransition(String state){
-		for (Transition transition : transitions) {
-			if(transition.getSource().equals(state)){
-				return transition;
-			}
-		}
+		
 		return new Transition("ERROR");
 	}
 	
