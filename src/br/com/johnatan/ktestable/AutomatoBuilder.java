@@ -37,7 +37,7 @@ public class AutomatoBuilder {
 				Character c = str.charAt(i);
 				String source = ">"; 
 				if(i != 0){
-					source = str.substring(0, i);
+					source = str.substring(0 , i);
 				}
 				String destination = str.substring(0, i+1);
 				transitions.setTransition(source, c, destination);
