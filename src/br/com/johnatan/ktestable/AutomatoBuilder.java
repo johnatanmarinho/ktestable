@@ -40,16 +40,22 @@ public class AutomatoBuilder {
 					source = str.substring(0 , i);
 				}
 				String destination = str.substring(0, i+1);
-				System.out.println("asdf   >" + destination);
 				transitions.setTransition(source, c, destination);
 			}	
+			
+			String source = str.substring(0, str.length() - 1);
+			Character c = str.charAt(str.length() - 1);
+			String destination = str;
+			transitions.setTransition(source, c, destination);
+			System.out.println( source + ": " + c + " -> " + destination);
+			System.out.println("==========");
 		}
 		
 		for(String str :  machine.getAcceptable()){
 			if(str.length() < 2){
 				continue;
 			}
-			String source = str.substring(0,str.length()-1);
+			String source = str.substring(0, str.length() - 1);
 			String destination = str.substring(1, str.length());
 			Character c = str.charAt(str.length()-1);
 			transitions.setTransition(source, c, destination);
