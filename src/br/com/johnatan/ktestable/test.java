@@ -17,7 +17,7 @@ public class test {
 		Automato dfa = AutomatoBuilder.automatoBuilder(machine);
 
 		System.out.println(
-				 dfa.recognize("testando meu k testable") 	
+				 dfa.recognize("sera que meu k testable funciona") 	
 			 		? "sucess" 
 			 		: "fail");	
 		
