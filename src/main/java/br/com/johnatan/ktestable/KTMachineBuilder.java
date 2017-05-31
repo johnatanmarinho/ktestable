@@ -33,7 +33,7 @@ public class KTMachineBuilder {
 				}
 			}
 			
-			for(int i = 0; i < sentence.length() - (k-1) ; i++){
+			for(int i = 0; i < sentence.length() - k ; i++){
 				String substring = sentence.substring(i, i + k);
 				if(!allowed.contains(substring)){
 					allowed.add(substring);
