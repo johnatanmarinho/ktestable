@@ -20,6 +20,7 @@ public class KTMachineBuilder {
 			
 			if(sentence.length() < k){
 				prefix.add(sentence);
+				sufix.add(sentence);
 			}
 			
 			if(sentence.length() >= k){
@@ -27,13 +28,13 @@ public class KTMachineBuilder {
 				if(!prefix.contains(p)){
 					prefix.add(p);
 				}
-				String s = sentence.substring(sentence.length() - (k + 1));
+				String s = sentence.substring(sentence.length() - (k - 1));
 				if(!sufix.contains(s)){
 					sufix.add(s);
 				}
 			}
 			
-			for(int i = 0; i < sentence.length() - k ; i++){
+			for(int i = 0; i < sentence.length() - k + 1 ; i++){
 				String substring = sentence.substring(i, i + k);
 				if(!allowed.contains(substring)){
 					allowed.add(substring);

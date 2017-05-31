@@ -12,16 +12,16 @@ public class KTMachineBuilderTest {
 	@Test
 	public void initialStateTest() {
 
-		List<String> dataSet = Arrays.asList(
+		List<String> sentences = Arrays.asList(
 				"a",
 				"aa",
 				"abba",
 				"abbbba"
 				);
 		String[] initialStates = {"a", "aa", "ab"};		
-		KTMachine machine = KTMachineBuilder.buildKTMachine(3, dataSet);
+		KTMachine machine = KTMachineBuilder.buildKTMachine(3, sentences);
+		assertArrayEquals(initialStates, machine.getPrefix().toArray());
 
-		assertArrayEquals(machine.getPrefix().toArray(), initialStates);
 	}
 	
 	@Test
@@ -32,7 +32,7 @@ public class KTMachineBuilderTest {
 				"abba",
 				"abbbba"
 		);
-		String[] allowedStrings = {"abb", "bbb", "bba"};
+		String[] allowedStrings = {"abb", "bba", "bbb"};
 		KTMachine machine = KTMachineBuilder.buildKTMachine(3, dataSet);
 		assertArrayEquals(machine.getAcceptable().toArray(), allowedStrings );
 
