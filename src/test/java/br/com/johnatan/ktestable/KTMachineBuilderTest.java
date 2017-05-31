@@ -45,12 +45,15 @@ public class KTMachineBuilderTest {
 			"aa",
 			"ba"			
 		};
+		
 		List<String> dataSet = Arrays.asList(
 				"a",
 				"aa",
 				"abba",
 				"abbbba"
 				);
+		
+		
 		KTMachine machine = KTMachineBuilder.buildKTMachine(3, dataSet);
 
 		assertArrayEquals(machine.getSufix().toArray(), finalStates);
