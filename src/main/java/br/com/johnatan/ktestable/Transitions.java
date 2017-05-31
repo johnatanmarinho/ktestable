@@ -14,7 +14,7 @@ public class Transitions {
 		this.states = states;
 		this.alphabet = alphabet;
 		this.transition = new HashMap<>();
-		
+			
 		for(String state : states){
 			Map<Character, String> transition = new HashMap<Character, String>();
 			for(Character c : alphabet){
