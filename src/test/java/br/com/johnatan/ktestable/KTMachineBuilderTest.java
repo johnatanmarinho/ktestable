@@ -18,45 +18,15 @@ public class KTMachineBuilderTest {
 				"abba",
 				"abbbba"
 				);
-		String[] initialStates = {"a", "aa", "ab"};		
+		String[] initialStates = {"a", "aa", "ab"};	
+		String[] finalStates = {"a", "aa", "ba"};
+		String[] allowedStrings = {"abb", "bba", "bbb"};	
+		
 		KTMachine machine = KTMachineBuilder.buildKTMachine(3, sentences);
-		assertArrayEquals(initialStates, machine.getPrefix().toArray());
+		
+		assertArrayEquals(initialStates, machine.getInitialStates().toArray());
+		assertArrayEquals(finalStates, machine.getSufix().toArray());
+		assertArrayEquals(allowedStrings, machine.getAllowedString().toArray());
 
 	}
-	
-	@Test
-	public void allowedStringTest() {
-		List<String> dataSet = Arrays.asList(
-				"a",
-				"aa",
-				"abba",
-				"abbbba"
-		);
-		String[] allowedStrings = {"abb", "bba", "bbb"};
-		KTMachine machine = KTMachineBuilder.buildKTMachine(3, dataSet);
-		assertArrayEquals(machine.getAcceptable().toArray(), allowedStrings );
-
-	}
-	
-	@Test	
-	public void finalStatesTest() {
-		String[] finalStates = {
-			"a",
-			"aa",
-			"ba"			
-		};
-		
-		List<String> dataSet = Arrays.asList(
-				"a",
-				"aa",
-				"abba",
-				"abbbba"
-				);
-		
-		
-		KTMachine machine = KTMachineBuilder.buildKTMachine(3, dataSet);
-
-		assertArrayEquals(machine.getSufix().toArray(), finalStates);
-	}
-
 }

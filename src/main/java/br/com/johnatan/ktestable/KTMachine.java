@@ -21,7 +21,7 @@ public class KTMachine {
 		this.acceptable = acceptable;
 	}
 
-	public List<String> getAcceptable() {
+	public List<String> getAllowedString() {
 		return acceptable;
 	}
 
@@ -37,7 +37,7 @@ public class KTMachine {
 		this.sufix = sufix;
 	}
 
-	public List<String> getPrefix() {
+	public List<String> getInitialStates() {
 		return prefix;
 	}
 

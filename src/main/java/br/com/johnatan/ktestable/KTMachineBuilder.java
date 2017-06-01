@@ -6,8 +6,8 @@ import java.util.List;
 public class KTMachineBuilder {
 
 	public static KTMachine buildKTMachine(int k, List<String> sentences) {
-		List<String> prefix = new ArrayList<>();
-		List<String> sufix = new ArrayList<>();
+		List<String> initialState = new ArrayList<>();
+		List<String> finalState = new ArrayList<>();
 		List<String> allowed = new ArrayList<>();
 		List<Character> alphabet = new ArrayList<>();
 		
@@ -19,18 +19,18 @@ public class KTMachineBuilder {
 			}
 			
 			if(sentence.length() < k){
-				prefix.add(sentence);
-				sufix.add(sentence);
+				initialState.add(sentence);
+				finalState.add(sentence);
 			}
 			
 			if(sentence.length() >= k){
 				String p = sentence.substring(0, k - 1);
-				if(!prefix.contains(p)){
-					prefix.add(p);
+				if(!initialState.contains(p)){
+					initialState.add(p);
 				}
 				String s = sentence.substring(sentence.length() - (k - 1));
-				if(!sufix.contains(s)){
-					sufix.add(s);
+				if(!finalState.contains(s)){
+					finalState.add(s);
 				}
 			}
 			
@@ -42,7 +42,7 @@ public class KTMachineBuilder {
 			}
 		}
 		
-		return new KTMachine(k, alphabet, prefix, sufix, allowed);
+		return new KTMachine(k, alphabet, initialState, finalState, allowed);
 	}
 
 }

@@ -5,22 +5,23 @@ import java.util.List;
 
 public class AutomatoBuilder {
 
-	static Automato automatoBuilder(KTMachine machine) {
+	static Automato build(int k, List<String> sentences) {		
+		KTMachine machine = KTMachineBuilder.buildKTMachine(k, sentences);
+		
 		List<String> states = new ArrayList<>();
 		states.add(">");
-		states.add(Transitions.ERROR);
-		
+		states.add(Transitions.ERROR);		
 		getStateFromPrefix(machine, states);
 		getStateFromSegment(machine, states);
-		Transitions transitions = new Transitions(states, machine.getAlphabet());
-		createTransitions(transitions, machine);
+		
+		Transitions transitions = createTransitions(states, machine);
 
 		return new Automato(">", machine.getSufix(), transitions);
 	}
 
-	private static void createTransitions(Transitions transitions, KTMachine machine) {
-		
-		for(String str : machine.getPrefix()){
+	private static Transitions createTransitions(List<String> states, KTMachine machine) {
+		Transitions transitions = new Transitions(states, machine.getAlphabet());
+		for(String str : machine.getInitialStates()){
 			if(str == ">" || str == Transitions.ERROR){
 				continue;
 			}
@@ -40,7 +41,7 @@ public class AutomatoBuilder {
 			transitions.setTransition(source, c, destination);
 		}
 		
-		for(String str :  machine.getAcceptable()){
+		for(String str :  machine.getAllowedString()){
 			if(str.length() < 2){
 				continue;
 			}
@@ -49,11 +50,12 @@ public class AutomatoBuilder {
 			Character c = str.charAt(str.length() - 1);
 			transitions.setTransition(source, c, destination);
 		}
+		return transitions;
 	}
 
 
 	private static void getStateFromSegment(KTMachine machine, List<String> states) {
-		for(String str : machine.getAcceptable()){
+		for(String str : machine.getAllowedString()){
 			if(str.length() > 1){
 				String prefix = str.substring(0, str.length()-1);
 				String sufix = str.substring(1, str.length());
@@ -68,7 +70,7 @@ public class AutomatoBuilder {
 	}
 
 	private static void getStateFromPrefix(KTMachine machine, List<String> states) {
-		for(String i : machine.getPrefix()){ // all prefixes are states 
+		for(String i : machine.getInitialStates()){ // all prefixes are states 
 			if(!states.contains(i)){
 				states.add(i);
 			}

@@ -42,7 +42,6 @@ public class Automato {
 		String state = this.initialState;		
 		for(Character c : string.toCharArray()){
 			String read = transitions.read(state, c);	
-			System.out.println(read);
 			if(read == Transitions.ERROR 
 					&& !sufix.contains(read)){
 				return false; 
